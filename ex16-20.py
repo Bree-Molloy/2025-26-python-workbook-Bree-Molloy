@@ -16,7 +16,7 @@ def areaVolume ():
     volume = 4/3 * math.pi * r**3
     print("Area:",area)
     print("Volume:", volume)
-#areaVolume()
+areaVolume()
 """
 Exercise 17:  Heat Capacity
 The amount of energy required to increase the temperature of one gram of 
@@ -54,6 +54,7 @@ def heatCap ():
     print("q=", qJoules, "J")
     print("$",cost)
 heatCap()
+
 """
 Exercise 18:  Volume of a Cylinder
 The volume of a cylinder can be computed by multiplying the area of its 
@@ -62,6 +63,13 @@ cylinder, along with its height, from the user and computes its volume.
 Display the result rounded to one decimal place.
 (15 lines)
 """
+def volCylinder():
+    radius = float(input("r:"))
+    height = float(input("h:"))
+    baseArea = math.pi*(radius**2)
+    volume = baseArea*height
+    print("The volume is:"+str(volume))
+volCylinder()
 
 """
 Exercise 19:  Free Fall
@@ -73,7 +81,13 @@ use the formula vf = (vi**2 + 2ad)**(1/2) to compute the final speed vf,
 when the initial speed, vi, acceleration, a, and distance, d, are known.
 (16 lines)
 """
-
+def freeFall():
+    d = float(input("Height:"))
+    vi = 0
+    a = 9.81
+    vf = ((vi**2) + (2*a*d))**(1/2)
+    print("Final speed:"+str(vf)+"m/s")
+freeFall()
 
 """
 Exercise 20: Ideal Gas Law
@@ -98,3 +112,14 @@ by 5/9 and then add 273.15 to it.
 
 (19 lines)
 """
+def idealGasLaw():
+    p = float(input("Pressure:"))
+    v = float(input("Volume:"))
+    t = float(input("Temperature (in Celsius):"))+273.15
+    pv = p*v
+    rt = 8.314*t
+    n = pv/rt
+    print(str(n)+" mols")
+idealGasLaw()
+
+
