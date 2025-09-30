@@ -16,7 +16,6 @@ def areaVolume ():
     print("Area:",area)
     print("Volume:", volume)
 areaVolume()
-
 """
 Exercise 17:  Heat Capacity
 The amount of energy required to increase the temperature of one gram of 
