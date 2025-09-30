@@ -1,0 +1,185 @@
+#Turtle documentation
+# https://docs.python.org/3/library/turtle.html#turtle.shape
+
+import turtle
+
+#Screen is a complex data type - 
+# meaning that it has attributes and behaviors
+screen = turtle.Screen() #this is the instantiation call for the object screen
+screen.title("Turtle Example in Python")
+
+# Create a turtle object
+#Turtle is a complex data type 
+poly = turtle.Turtle() #This is the instantiation of an object
+lion = turtle.Turtle() #Instantiation of a new turtle object
+poly.color("red")
+poly.shape("turtle")
+
+#poly.circle(50)
+# Move the turtle forward by 100 units
+# --forward100 is a non-fruitful function because it does
+#   not return a value, it simply performs an action,
+#   which is to move the turtle forward 100
+
+# Turn the turtle to the right by 90 degrees
+# --right90 is a non-fruitful function because it does
+#   not return a value, it simply performs an action,
+#   which is to turn the turtle 90 degrees to the right
+
+def square(aTurtle):
+    for i in range(4):
+        aTurtle.forward(100)
+        aTurtle.right(90)
+
+def pentagon():
+    for i in range(5):
+        poly.forward(100)
+        poly.right(72)
+
+def regularPolygon(sides):
+    interiorAngle = 180 - ((sides - 2) * 180) / sides
+    for i in range(sides):
+        poly.forward(100)
+        poly.right(interiorAngle)
+
+def make_circle():
+    poly.circle(50)
+
+# subjects is a list which is a complex data type
+# subjects contains a length of 5.
+# for loop is for finite loops
+# ITERATION - looping through code over and over again
+def iterationTesting():
+
+    subjects = ["English", "Math", "Science", "Health", "Economics"]
+    for subject in subjects:
+        print("My favorite subject is: ", subject)
+
+    counter = 0
+    while(counter <= len(subjects)):
+        print("Counter: ", counter)
+        # increment the counter
+        counter = counter + 1
+
+    #do {
+    # this code will run at least once
+    # } while a condition a met
+
+def rainbow():
+    colors = ["red","orange","yellow","green","blue","indigo","violet"]
+    for color in colors:
+        poly.color(color)
+        poly.forward(10)
+        poly.circle(20)
+        poly.forward(10)
+
+def backForth():
+    poly.forward(-300)
+    poly.speed(10)
+    colors = ["red","orange","yellow","green","blue","indigo","violet"]
+    for color in colors:
+        poly.color(color)
+        poly.pensize(3)
+        poly.forward(100)
+        poly.forward(-50)
+
+def funActivityWithTurtles():
+    size = 20
+    #penup and pendown function
+
+    #stamp function
+    for i in range(30):
+        poly.stamp()
+        poly.penup()
+        size = size + 3
+        poly.forward(size)
+        poly.pendown()
+        poly.right(24)
+
+def print1000times(message):
+    for i in range(1000):
+        print(message)
+
+def printMonths():
+    months = ["January", "February", "March", "April", "May"]
+    for month in months:
+        print("Welcome to the month of ", month)
+
+def turnLeft3645(aTurtle):
+    aTurtle.left(3645)
+
+def iterationExercise():
+    xs = [12, 10, 32, 3, 66, 17, 42, 99, 20]
+    sum = 0
+    product = 1
+    for x in xs:
+        sum = sum + x
+        product = product * x
+        print(x, " -- ", x**2)
+    print ("The sum of the numbers is ", sum, " and the product is ", product)
+
+
+# Make a star
+def star():
+    poly.left(72)
+    poly.forward(100)
+    i=0
+    for i in range (4):
+        poly.right(144)
+        poly.forward(100)
+
+# clock image
+def clock():
+    i=0
+    for i in range(12):
+        poly.right(30)
+        poly.penup()
+        poly.forward(100)
+        poly.pendown()
+        poly.forward(30)
+        poly.stamp()
+        poly.penup()
+        poly.goto(0,0)
+        poly.pendown()
+
+# optical illusion
+def swirl():
+    for i in range(100):
+        poly.left(90)
+        poly.forward(3*i)
+
+def swirl2():
+    screen.bgcolor("black")
+    poly.pensize(2)
+    poly.speed(50)
+    poly.pencolor("pink")
+    for i in range(900):
+        poly.left(89)
+        poly.forward(2*i)
+
+#swirl2()
+#swirl()
+#clock()
+#star()
+#TEST SUITE
+
+#funActivityWithTurtles()
+#screen is a Screen object and it has behaviors
+# like onkey, onkeypress
+screen.onkey(square, "Up")
+screen.onkey(pentagon, "Right")
+screen.onkey(make_circle, "Left")
+#regularPolygon(int(input("Number of sides: ")))
+#rainbow()
+#backForth()
+
+#print1000times("I love Python")
+#printMonths()
+#turnLeft3645(poly)
+iterationExercise()
+#square(poly)
+#square(lion)
+
+screen.listen()
+screen.mainloop()
+
