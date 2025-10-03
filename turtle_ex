@@ -15,6 +15,52 @@ lion = turtle.Turtle() #Instantiation of a new turtle object
 poly.color("red")
 poly.shape("turtle")
 
+def multisquare(t, sz, colors, th):
+    t.pensize(th)
+    for i in colors:
+        t.color(i)
+        t.forward(sz)
+        t.left(90)
+def getThickness():
+    thick = int(input("How thick?"))
+    return thick
+def getColors():
+    colors3 = []
+    for i in range(4):
+        color = input("What color?")
+        colors3.append(color)
+    return colors3
+
+colors1 = ["pink", "purple", "blue", "green"]
+colors2 = ["red", "orange", "yellow", "green"]
+#multisquare(poly, 100, colors1, 2)
+#multisquare(poly, 50, colors2, 3)
+#multisquare(poly, 25, getColors(), getThickness())
+def squareInSquare(t,x,num):
+    for i in range(num):
+        drawSquare(t,(x*i))
+        t.penup()
+        t.left(180)
+        t.forward(2*x)
+        t.pendown
+
+        
+
+def drawManySquare(t, x, num):
+    for i in range(num):
+        drawSquare(t, x)
+        t.penup()
+        t.forward(2*x)
+        t.pendown()
+
+def drawSquare(t, x):
+    for i in range(4):
+        t.forward(x)
+        t.left(90)
+
+
+#drawManySquare(poly, 20, 5)
+squareInSquare(poly,20,5)
 #poly.circle(50)
 # Move the turtle forward by 100 units
 # --forward100 is a non-fruitful function because it does
