@@ -40,9 +40,11 @@ def squareInSquare(t,x,num):
     for i in range(num):
         drawSquare(t,(x*i))
         t.penup()
-        t.left(180)
-        t.forward(2*x)
-        t.pendown
+        t.left(45)
+        t.forward(x*i)
+        t.left(45)
+        t.pendown()
+
 
         
 
