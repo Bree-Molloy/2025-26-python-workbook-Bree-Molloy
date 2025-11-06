@@ -27,7 +27,7 @@ def getInts():
 
 #Sorts the list in order and prints the values
 def orderList(listofints):
-    listofints.sort()
+    listofints.sort() 
     for i in range (len(listofints)):
         print (listofints[i])
     return listofints
