@@ -48,5 +48,23 @@ def greaterLess(numlist):
     print("Greater than average:", greaterList)
     print("Less than average:", lessList)
 
-greaterLess(trialList)
-greaterLess(getList())
+#greaterLess(trialList)
+#greaterLess(getList())
+
+"""
+Exercise 111:
+Identifies all words in a string and returns a list of words with punctuation removed 
+"""
+
+def splitText(string):
+    cleanString = ""
+    for char in string:
+        if char not in ("!@#$%^&*()_-+=~`{[]}|\:;,<.>?/"):
+            #if (char != "!") & (char != ",") & (char != "."):
+            cleanString += char
+        else:
+            continue
+    splitList = cleanString.split()
+    return splitList
+
+print(splitText("Hi! I'm, Briana."))
