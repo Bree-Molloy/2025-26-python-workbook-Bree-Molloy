@@ -68,3 +68,6 @@ def splitText(string):
     return splitList
 
 print(splitText("Hi! I'm, Briana."))
+print(splitText("Why^ Am_ I. He@re"))
+
+
