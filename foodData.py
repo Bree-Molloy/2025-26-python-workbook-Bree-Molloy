@@ -12,6 +12,9 @@ fats = []
 sodiums = []
 sugars = []
 
+list_data = []
+uniqueRestaurants = set()
+
 # Read the CSV file and store the data into lists
 
 def choose_file():
@@ -33,6 +36,22 @@ def read_csv(file_name):
             fats.append(float(row['fat']))
             sodiums.append(float(row['sodium']))
             sugars.append(float(row['sugars']))
+            list_data.append(row)
+            uniqueRestaurants.add(row['restaurant'])
+
+
+def allItemsList():
+    for i in range(len(items)):
+        itemsList = []
+        itemsList.append(restaurants[i])
+        itemsList.append(items[i])
+        itemsList.append(types[i])
+        itemsList.append(serving_sizes[i])
+        itemsList.append(calories[i])
+        itemsList.append(fats[i])
+        itemsList.append(sodiums[i])
+        itemsList.append(sugars[i])
+
 
 def findAvg(list_of_values):
     avg = sum(list_of_values)/len(list_of_values)
@@ -50,23 +69,32 @@ def countItems(list_of_values):
     count = len(list_of_values)
     return count
 
-def sugarsPerRestaurant(list_of_values, restaurant_name):
-    sugarsPer = []
-    for i in range(len(restaurants)):
-        if restaurants[i] == restaurant_name:
-            sugarsPer.append(list_of_values[i])
-    return sugarsPer
+def sugarsPerRestaurantReport():
+    report = {}
+    for restaurant in uniqueRestaurants:
+        totalSugars = 0
+        for i in range(len(restaurants)):
+            if restaurants[i] == restaurant:
+                totalSugars += sugars[i]
+    report[restaurant] = totalSugars
+    return report
 
 def main():
     # Read and load data from a CSV file
     file_path = choose_file()
     #read_file(file_path)
     read_csv(file_path)
-    print("Average sugars for mcdonalds ", findAvg(sugarsPerRestaurant(sugars, "McDonald's")))
     print("Average calories is", findAvg(calories))
     print("Min calories is", minVal(calories))
     print("Max sodium is ", maxVal(sodiums))
     print("Count of items is", countItems(items))
+    print("List of restaurants and their total sugars: ")
+
+    
+    report = sugarsPerRestaurantReport()
+    for result in report:
+        print(result, ": ", report[result])
+    print("\n")
 
 if __name__ == '__main__':
     main()
