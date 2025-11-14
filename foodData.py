@@ -36,10 +36,12 @@ def read_csv(file_name):
             fats.append(float(row['fat']))
             sodiums.append(float(row['sodium']))
             sugars.append(float(row['sugars']))
+
             list_data.append(row)
             uniqueRestaurants.add(row['restaurant'])
-
-
+      #  print(uniqueRestaurants)
+            
+"""
 def allItemsList():
     for i in range(len(items)):
         itemsList = []
@@ -51,8 +53,7 @@ def allItemsList():
         itemsList.append(fats[i])
         itemsList.append(sodiums[i])
         itemsList.append(sugars[i])
-
-
+"""
 def findAvg(list_of_values):
     avg = sum(list_of_values)/len(list_of_values)
     return avg
@@ -77,6 +78,7 @@ def sugarsPerRestaurantReport():
             if restaurants[i] == restaurant:
                 totalSugars += sugars[i]
     report[restaurant] = totalSugars
+    print(report)
     return report
 
 def main():
@@ -88,9 +90,8 @@ def main():
     print("Min calories is", minVal(calories))
     print("Max sodium is ", maxVal(sodiums))
     print("Count of items is", countItems(items))
-    print("List of restaurants and their total sugars: ")
-
     
+    print("List of restaurants and their total sugars: ")
     report = sugarsPerRestaurantReport()
     for result in report:
         print(result, ": ", report[result])
