@@ -77,8 +77,7 @@ def sugarsPerRestaurantReport():
         for i in range(len(restaurants)):
             if restaurants[i] == restaurant:
                 totalSugars += sugars[i]
-    report[restaurant] = totalSugars
-    print(report)
+        report[restaurant] = totalSugars
     return report
 
 def main():
