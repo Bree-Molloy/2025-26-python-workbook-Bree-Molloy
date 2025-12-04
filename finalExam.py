@@ -69,12 +69,12 @@ wit = 0
 specialWeek = [83, 88, 98, 90, 91]
 TMOperaO = [83, 120, 83, 113, 101]
 meijiroMcQueen = [82, 112, 80, 120, 96]
+goldShip = [87, 101, 105, 81, 76]
 
 # If training fails, this function will run
 # Decreases mood and the stat that failed training
 def failure(stat, mood):
-    print("Training Failed")
-    stat = stat-5
+    print("\nTraining Failed")
     if mood>1:
         mood = mood-1
 
@@ -86,32 +86,20 @@ def trainingSuccess(energy):
     num=random.randint(1,100)
     if energy >=4:
         return True
-    elif energy==3:
-        if (num > 10):
-            return True
-        else:
-            return False
-    elif energy==2:
-        if (num > 20):
-            return True
-        else:
-            return False
-    elif energy==1:
-        if (num > 30):
-            return True
-        else:
-            return False
-    elif energy==0:
-        if (num > 40):
-            return True
-        else:
-            return False
+    elif (energy==3) & (num >= 10):
+        return True
+    elif (energy==2) & (num >= 20):
+        return True
+    elif (energy==1) & (num >= 30):
+        return True
+    else:
+        return False
 
 #Decreases trainee energy 
 #If energy would go into the negatives, does not decrease
 #Returns the new energy
 def decreaseEnergy(energy):
-    if energy>1:
+    if energy>=1:
         energy = energy-1
     return energy
 
@@ -140,6 +128,7 @@ def trainStat(stat, trainingLevel, mood, energy):
         stat += statIncreaseLvl(trainingLevel,mood)
     elif trainingSuccess(energy) == False:
         failure(stat, mood)
+        stat = stat-5
     return stat
 
 
@@ -155,8 +144,6 @@ def restTrainee(energy,mood):
         mood+=2
     elif mood == 4:
         mood+=1
-    print("Energy:", energy)
-    print("Mood:", mood)
     energyMoodList = []
     energyMoodList.append(energy)
     energyMoodList.append(mood)
@@ -181,7 +168,8 @@ def startGame():
     print("Select a trainee:")
     print("""1: Special Week
 2: TM Opera O
-3: Meijiro McQueen""")
+3: Meijiro McQueen
+4: Gold Ship""")
     uma = int(input(""))
     if uma == 1:
         runGame(specialWeek)
@@ -189,6 +177,8 @@ def startGame():
         runGame(TMOperaO)
     elif uma == 3:
         runGame(meijiroMcQueen)
+    elif uma == 4:
+        runGame(goldShip)
 
 # contains all function calls
 def runGame(uma):
@@ -204,6 +194,7 @@ def runGame(uma):
     power = uma[2]
     guts = uma[3]
     wit = uma[4]
+
 
     # user trains or rests trainee 5x
     for i in range (7):
