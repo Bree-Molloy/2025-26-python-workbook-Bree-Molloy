@@ -73,7 +73,7 @@ goldShip = [87, 101, 105, 81, 76]
 
 # If training fails, this function will run
 # Decreases mood and the stat that failed training
-def failure(stat, mood):
+def failure(mood):
     print("\nTraining Failed")
     if mood>1:
         mood = mood-1
