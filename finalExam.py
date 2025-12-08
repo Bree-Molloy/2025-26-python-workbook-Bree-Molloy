@@ -11,6 +11,7 @@ sta: 112
 pow: 80
 guts: 120
 wit: 96
+Total: 490
 
 T.M. Opera O
 Initial stats:
@@ -19,6 +20,7 @@ sta: 120
 pow: 83
 guts: 113
 wit: 101
+Total: 500
 
 Special Week
 Initial stats:
@@ -27,6 +29,15 @@ sta: 88
 pow: 98
 guts: 90
 wit: 91
+Total: 450
+
+Gold Ship
+spd: 87
+sta: 101
+pow: 105
+guts: 81
+wit: 76
+Total: 450
 """
 
 """
@@ -36,6 +47,8 @@ Base skill training levels:
 3: +23
 4: +30
 5: +37
+Training level increases every round
+Each level increases base stat increase by 7
 """
 
 """
@@ -153,16 +166,18 @@ def restTrainee(energy,mood):
 # Allows user to decide between training or resting
 # Returns True if train is selected
 # Returns False if rest is selected
+
 def trainOrRest():
-    userInput = input("Do you want to train or rest your trainee?")
+    userInput = input("Do you want to train or rest your trainee? (Invalid inputs are counted as rest turns)")
     userInput = userInput.upper()
     if userInput == "TRAIN":
         return True
-    elif userInput == "REST":
+    else:
         return False
 
+
 # prints start prompts
-# lets user selest trainee
+# lets user select trainee
 def startGame():
     print("\nWelcome to Pretty Derby (Python edition)!\n")
     print("Select a trainee:")
@@ -170,15 +185,18 @@ def startGame():
 2: TM Opera O
 3: Meijiro McQueen
 4: Gold Ship""")
-    uma = int(input(""))
-    if uma == 1:
-        runGame(specialWeek)
-    elif uma == 2:
-        runGame(TMOperaO)
-    elif uma == 3:
-        runGame(meijiroMcQueen)
-    elif uma == 4:
-        runGame(goldShip)
+    try:
+        uma = int(input(""))
+        if uma == 1:
+            runGame(specialWeek)
+        elif uma == 2:
+            runGame(TMOperaO)
+        elif uma == 3:
+            runGame(meijiroMcQueen)
+        elif uma == 4:
+            runGame(goldShip)
+    except:
+        print("Invalid input, please re-run program")
 
 # contains all function calls
 def runGame(uma):
@@ -187,6 +205,7 @@ def runGame(uma):
     print(uma, "\n")
     energy = 5
     mood = 3
+
     # from the list of stats of the selected uma
     # defines variables
     speed = uma[0] 
@@ -195,9 +214,8 @@ def runGame(uma):
     guts = uma[3]
     wit = uma[4]
 
-
     # user trains or rests trainee 5x
-    for i in range (7):
+    for i in range (5):
         if trainOrRest():
             # User selects stat to train
             # Runs trainStat function based on the stat selected
@@ -222,13 +240,28 @@ def runGame(uma):
             elif trainedStat=="WIT":
                 wit = trainStat(wit,(i+1),mood,energy)
                 print("WIT:", wit)
+            else:
+                print("Invalid input")
             energy = decreaseEnergy(energy)
-        else:
+        elif trainOrRest()==False:
             energy = restTrainee(energy,mood)[0]
             mood = restTrainee(energy,mood)[1]
+
 
         print("\nEnergy:", energy)
         print("Mood:", mood, "\n")
     
+    # races your trainee vs the 3 you did not select
+    # if your total stats are greater than the other trainees you will beat them
+    print("Race!")
+    sumOfStats = speed+stamina+power+guts+wit
+    if sumOfStats>500:
+        print("1st place!")
+    elif sumOfStats>490:
+        print("2nd place")
+    elif sumOfStats>450:
+        print("3rd place")
+    else:
+        print("4th place")
 
 startGame()
